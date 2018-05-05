@@ -21,6 +21,7 @@ namespace Chatbot.Business.Handlers {
         }
 
         public Response ProcessRequest(Dictionary<string, string> param) {
+            var numberofParams = param.Count;
             var data = Helper.Helper.GetObject(param);
             if (data == null) {
                 return null;

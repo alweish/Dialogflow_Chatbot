@@ -1,0 +1,43 @@
+﻿Content-Type: text/html; charset=utf-8
+<html>
+<head>
+</head>
+<body>
+    <table style="table-layout:fixed; background-color:#fff; width:100%;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center">
+                <table class="content" align="center" width="640" style="table-layout: fixed; background-color: #fff; line-height:1.5;width:640px;" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td style="padding: 20px;">
+                            <p>Beste,</p>
+                            @if (ViewBag.UserInfo.Name != null && ViewBag.UserInfo.Name != "") {
+                                <p>@ViewBag.UserInfo.Name heeft een vraag over een factuur.</p>
+                            }
+                            <p>Het meegedeelde factuurnummer is @ViewBag.Invoice</p>
+
+                            @if (ViewBag.InvoiceDate != null) {
+                                <p>De factuur is op @ViewBag.InvoiceDate opgestuurd geweest.</p>
+                            }
+
+                            <p>De klant is bereikbaar op @ViewBag.UserInfo.Email @if (@ViewBag.UserInfo.PhoneNumber != null) {
+                                <span>of via @ViewBag.UserInfo.PhoneNumber</span>}
+                            </p>
+
+                            <p>@ViewBag.ExtraInfo</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px;">
+                            <table style="table-layout: fixed; background-color: #ffffff; line-height:1.5; width:640px;">
+                                <tr><td>Altijd tot uw dienst,</td></tr>
+                                <tr><td>JaneBot</td></tr>
+                                <tr><td><a href="https://www.starringjane.com/janebot">www.starringjane.com/janebot</a></td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
