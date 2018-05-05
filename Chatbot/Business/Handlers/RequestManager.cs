@@ -28,12 +28,15 @@ namespace Chatbot.Business.Handlers {
             }
             var request = ModelMapper.MapToRequest(data);
             //TODO verschillend van vandaag, klant kan meerdere keren fouten creeeren
-            var userRequest = GetUserRequest(request.LastName, request.FirstName);
+            var userRequest = GetUserRequest(request.Email);
             if (userRequest == null) {
                 var id = _dal.CreateRequest(request);
                 if (id > 0) {
                     Logger.Info($"Inserted Request");
-                    return new Response() { Message = $"Waarmee kan ik u helpen { data.firstName }?", Parameter = data, TicketSent = false };
+                    var name = data.lastName;
+                    if (data.firstName != null)
+                        name = data.firstName;
+                    return new Response() { Message = $"Waarmee kan ik u helpen {name} ?", Parameter = data, TicketSent = false };
                 } else {
                     Logger.Info("Could not insert request");
                     return null;
@@ -64,7 +67,7 @@ namespace Chatbot.Business.Handlers {
                 case Constant.Constants.Flow_Invoice:
                     if (data.flowDetail == "duplicaat") {
                         ticketSent = GetInvoice(data);
-                    } else if (data.flowDetail == "andere") {
+                    } else if (data.flowDetail == "facturatie_andere" & data.extraInfo != null) {
                         ticketSent = GenerateGeneralTicket(data);
                     }
                     break;
@@ -82,13 +85,13 @@ namespace Chatbot.Business.Handlers {
         private bool GenerateGeneralTicket(Parameter data) {
             var flowId = _dal.GetFlowByName(data.flow).Id;
             var flowDetailId = _dal.GetFlowDetailByName(data.flowDetail).Id;
-            var request = _dal.GetRequestByUserName(data.lastName, data.firstName);
+            var request = _dal.GetRequestByUserEmail(data.email);
 
             Ticket ticket = new Ticket() {
                 DateReceived = DateTime.Now,
                 FlowDetailId = flowDetailId,
                 FlowId = flowId,
-                Issue = data.extraInfo,
+                ExtraInfo = data.extraInfo,
                 UserId = request.Id
             };
 
@@ -102,8 +105,8 @@ namespace Chatbot.Business.Handlers {
             return false;
         }
 
-        private Request GetUserRequest(string lastname, string firstname) {
-            return _dal.GetRequestByUserName(lastname, firstname);
+        private Request GetUserRequest(string email) {
+            return _dal.GetRequestByUserEmail(email);
         }
 
 
@@ -113,7 +116,7 @@ namespace Chatbot.Business.Handlers {
             }
             var invoice = Int32.Parse(data.factuurNummer);
 
-            var request = _dal.GetRequestByUserName(data.lastName, data.firstName);
+            var request = _dal.GetRequestByUserEmail(data.email);
             var mailsent = SendMail(data);
             if (mailsent) {
                 request.Processed = DateTime.Now;

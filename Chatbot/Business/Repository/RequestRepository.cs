@@ -27,10 +27,10 @@ namespace Chatbot.Business.Repository {
             }
         }
 
-        public Request GetById(int id) {
+        public Request GetByEmail(string email) {
             try {
                 var db = new Database(Constant.Constants.DBConnectionName);
-                return db.FirstOrDefault<Request>($"WHERE Id = @0", id);
+                return db.FirstOrDefault<Request>($"WHERE Email = @0", email);
             } catch (Exception e) {
                 Logger.Error($"Error fetching Request");
                 Logger.Error($"{e.Message}");
@@ -38,11 +38,12 @@ namespace Chatbot.Business.Repository {
                 return null;
             }
         }
-        public Request GetByName(string lastname, string firstname) {
+
+        public Request GetById(int id) {
             try {
                 var db = new Database(Constant.Constants.DBConnectionName);
-                return db.FirstOrDefault<Request>($"WHERE LastName = @0 AND FirstName = @1", lastname, firstname);
-            } catch (Exception e) { 
+                return db.FirstOrDefault<Request>($"WHERE Id = @0", id);
+            } catch (Exception e) {
                 Logger.Error($"Error fetching Request");
                 Logger.Error($"{e.Message}");
                 Logger.Error($"{e.StackTrace}");

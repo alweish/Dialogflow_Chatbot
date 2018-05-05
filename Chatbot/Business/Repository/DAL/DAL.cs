@@ -24,8 +24,8 @@ namespace Chatbot.Business.Repository.DAL {
         public int CreateRequest(Request model) {
             return repositoryInitialiser.requestRepo.Insert(model);
         }
-        public Request GetRequestByUserName(string lastname, string firstname) {
-            return repositoryInitialiser.requestRepo.GetByName(lastname, firstname);
+        public Request GetRequestByUserEmail(string email) {
+            return repositoryInitialiser.requestRepo.GetByEmail(email);
         }
         public void UpdateRequest(Request model) {
             repositoryInitialiser.requestRepo.Update(model);

@@ -11,7 +11,7 @@ namespace Chatbot.Business.Repository {
         void Update(Request entity);
         IList<Request> GetAll();
         Request GetById(int id);
-        Request GetByName(string lastname, string firstname);
+        Request GetByEmail(string email);
     }
 
     public interface IFlowRepository {
