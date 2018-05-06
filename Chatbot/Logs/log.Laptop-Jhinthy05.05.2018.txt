@@ -1,0 +1,16 @@
+﻿INFO  2018-05-05 21:07:40,157 244374ms RequestManager         ProcessRequest     - Inserted Request
+INFO  2018-05-05 21:08:22,845 287062ms RequestManager         ProcessRequest     - Update Request 4 with flow
+INFO  2018-05-05 21:10:05,607 389824ms RequestManager         ProcessRequest     - Update Request 4 with flow
+INFO  2018-05-05 21:10:53,786 438003ms RequestManager         ProcessRequest     - Inserted Request
+INFO  2018-05-05 21:11:02,319 446535ms RequestManager         ProcessRequest     - Update Request 5 with flow
+INFO  2018-05-05 21:11:18,907 463123ms RequestManager         ProcessRequest     - Update Request 5 with flow
+INFO  2018-05-05 21:12:51,454 555671ms RequestManager         ProcessRequest     - Update Request 5 with flow
+INFO  2018-05-05 21:12:56,334 560551ms RequestManager         ProcessRequest     - Update Request 5 with flow
+INFO  2018-05-05 21:24:08,906 37163ms RequestManager         ProcessRequest     - Inserted Request
+INFO  2018-05-05 21:24:29,878 58135ms RequestManager         ProcessRequest     - Update Request 6 with flow
+INFO  2018-05-05 21:26:53,262 201519ms RequestManager         ProcessRequest     - Inserted Request
+INFO  2018-05-05 21:27:00,502 208759ms RequestManager         ProcessRequest     - Update Request 7 with flow
+INFO  2018-05-05 21:27:24,629 232886ms RequestManager         SendMail           - Email sent to bluepizza2511@gmail.com
+INFO  2018-05-05 21:49:21,943 13468ms RequestManager         ProcessRequest     - Inserted Request
+INFO  2018-05-05 21:49:37,970 29495ms RequestManager         ProcessRequest     - Update Request 8 with flow
+INFO  2018-05-05 21:50:08,082 59607ms RequestManager         SendMail           - Email sent to bluepizza2511@gmail.com

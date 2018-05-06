@@ -21,7 +21,6 @@ namespace Chatbot.Business.Handlers {
         }
 
         public Response ProcessRequest(Dictionary<string, string> param) {
-            var numberofParams = param.Count;
             var data = Helper.Helper.GetObject(param);
             if (data == null) {
                 return null;
@@ -106,6 +105,15 @@ namespace Chatbot.Business.Handlers {
         }
 
         private Request GetUserRequest(string email) {
+            if (_dal.GetRequestByUserEmail(email) != null) {
+                var reqdate = _dal.GetRequestByUserEmail(email).DateCreated.Date;
+                var today = DateTime.Now.Date;
+
+                if (reqdate.CompareTo(today) < 0) {
+                    Logger.Info("Nieuwe request voor gebruiker");
+                    return null;
+                }
+            }
             return _dal.GetRequestByUserEmail(email);
         }
 
@@ -114,7 +122,7 @@ namespace Chatbot.Business.Handlers {
             if (data.factuurNummer == null) {
                 return false;
             }
-            var invoice = Int32.Parse(data.factuurNummer);
+            var invoice = Int64.Parse(data.factuurNummer);
 
             var request = _dal.GetRequestByUserEmail(data.email);
             var mailsent = SendMail(data);

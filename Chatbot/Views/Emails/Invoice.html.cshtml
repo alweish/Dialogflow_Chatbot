@@ -15,7 +15,7 @@
                             }
                             <p>Het meegedeelde factuurnummer is @ViewBag.Invoice</p>
 
-                            @if (ViewBag.InvoiceDate != null) {
+                            @if (ViewBag.InvoiceDate != null && ViewBag.InvoiceDate != "") {
                                 <p>De factuur is op @ViewBag.InvoiceDate opgestuurd geweest.</p>
                             }
 
